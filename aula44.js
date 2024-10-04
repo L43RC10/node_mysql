@@ -9,7 +9,7 @@ app.listen(3000, () => {
 const mysql = require("mysql");
 const connection = mysql.createConnection({
     user: 'root',
-    password: '12345678b',
+    password: '', // 12345678b , se pedir senha
     stringifyObjects: true,
     database: 'blog'
 });
@@ -29,7 +29,7 @@ app.get("/", (req, res) => {
         ['0', 'teste14', '2030-10-20 13:30:00']
     ];
 
-    connection.query('INSERT INTO users VALUES?', [values], (erro, resultados) => {
+    connection.query('INSERT INTO users VALUES ?', [values], (erro, resultados) => {
 
         if(erro){
             res.send(`ERRO: ${erro.sqlMessage}`);

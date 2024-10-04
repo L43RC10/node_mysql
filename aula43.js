@@ -9,7 +9,7 @@ app.listen(3000, () => {
 const mysql = require("mysql");
 const connection = mysql.createConnection({
     user: 'root',
-    password: '12345678b',
+    password: '', // 12345678b , se pedir senha
     stringifyObjects: true,
     database: 'blog'
 });
@@ -17,7 +17,7 @@ const connection = mysql.createConnection({
 // routes
 app.get("/", (req, res) => {
 
-    connection.query("SELECT * FROM users WHERE id = ? AND username = ?", [1, 'Dalila'], (erro, resultados) => {
+    connection.query("SELECT * FROM users WHERE id = ? AND username = ?", [1, 'Laercio'], (erro, resultados) => {
     // connection.query("SELECT * FROM users", (erro, resultados) => {
 
         if(erro){

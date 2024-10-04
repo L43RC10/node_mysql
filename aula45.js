@@ -8,22 +8,24 @@ app.listen(3000, () => {
 // mysql
 const mysql = require("mysql");
 const connection = mysql.createConnection({
-    // user: 'user_blog',
-    // password: 'BilOdu7agoVIKEh55eL8P3f4857ar5'
-    
     user: 'root',
     password: '', // 12345678b , se pedir senha
-    stringifyObjects: true
+    database: 'blog'
 });
 
 // routes
 app.get("/", (req, res) => {
-
-    connection.query("SELECT * FROM blog.users", (erro, resultados) => {
-        if(erro){
-            res.send(`erro: ${erro.sqlMessage}`);
-        }
-
-        res.send(resultados[2].username);
-    });
+    res.send('OK!');
 });
+
+app.get('/users/:id', (req, res) => {
+    let id = req.params.id;
+    // res.send(id);
+    connection.query('SELECT * FROM users WHERE id = ?', [id], (erro, resultado) => {
+        if(erro){
+            res.send(`Erro:${erro.errno} / ${erro.sqlMessage}`);
+        } else {
+            res.send(resultado);
+        }
+    })
+})

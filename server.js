@@ -8,10 +8,10 @@ app.listen(3000, () => {
 // mysql
 const mysql = require("mysql");
 const connection = mysql.createConnection({
-    host:'localhost',
+    host:'127.0.0.1',
     user: 'root',
-    password: '12345678b',
-    database: 'blogs' //simulação de erro aui, o correto é blog
+    password: '',
+    database: 'blog' //simulação de erro aui, o correto é blog
 });
 
 // routes
@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 
         if(erro){
             console.log(erro.message);
-            res.send(`erro: ${erro.sqlMessage}`); //message, code, errno, sqlMessage
+            res.send(`erro: ${erro.errno}`); //message, code, errno, sqlMessage
         }
 
         res.send(resultados[0].username);
